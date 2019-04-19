@@ -12,7 +12,7 @@ from ProcessData import process_data
 import jieba
 
 # settings
-max_len = 100
+max_len = 2500
 training_samples = 200
 validation_samples = 16
 max_words = 10000
