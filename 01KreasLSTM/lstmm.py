@@ -33,7 +33,6 @@ def savedata(title):
                 train_content_data[i] = rj_list[j]['content']
     return train_content_data
 
-@clock
 def peredata(content_data):
     print('step3: 分词处理及数据预处理...')
     word_index_dic = {}  # 存储全部文档中出现的词及对应的编码
