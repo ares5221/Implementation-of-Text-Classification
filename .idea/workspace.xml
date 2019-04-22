@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44767bac-a2ff-41c3-9675-66dfe8fa2347" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/01KreasLSTM/lstmm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01KreasLSTM/pre_trained_glove_model.h5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01KreasLSTM/pre_trained_glove_model_1.h5" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/01KreasLSTM/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/01KreasLSTM/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,30 +15,38 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Implementation_of_Text_Classification$train.coverage" NAME="train Coverage Results" MODIFIED="1555663497087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/01KreasLSTM/text-and-sequence-master" />
-    <SUITE FILE_PATH="coverage/Implementation_of_Text_Classification$train__1_.coverage" NAME="train (1) Coverage Results" MODIFIED="1555668576481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/01KreasLSTM" />
+    <SUITE FILE_PATH="coverage/Implementation_of_Text_Classification$train__1_.coverage" NAME="train (1) Coverage Results" MODIFIED="1555918667569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/01KreasLSTM" />
     <SUITE FILE_PATH="coverage/Implementation_of_Text_Classification$ProcessData.coverage" NAME="ProcessData Coverage Results" MODIFIED="1555665469789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/01KreasLSTM" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5400126">
+    <splitter split-orientation="horizontal" split-proportion="0.45786864">
       <split-first>
         <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/01KreasLSTM/test.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-787" />
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/01KreasLSTM/train.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-722">
-                  <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+                <state relative-caret-position="352">
+                  <caret line="154" column="24" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="24" />
                   <folding>
                     <element signature="e#45#54#0" expanded="true" />
-                    <element signature="e#1104#1392#0" />
-                    <element signature="e#2427#3193#0" />
+                    <element signature="e#3247#4080#0" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/data/cnews_loader.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-662" />
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/01KreasLSTM/test.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="893">
+                  <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -45,11 +56,9 @@
       <split-second>
         <leaf>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/01KreasLSTM/lstmm.py">
+            <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/cnn_model.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
-                </state>
+                <state relative-caret-position="-909" />
               </provider>
             </entry>
           </file>
@@ -83,8 +92,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="696" />
-    <option name="y" value="34" />
+    <option name="x" value="153" />
+    <option name="y" value="51" />
     <option name="width" value="1918" />
     <option name="height" value="962" />
   </component>
@@ -107,6 +116,26 @@
               <item name="Implementation-of-Text-Classification" type="b2602c69:ProjectViewProjectNode" />
               <item name="Implementation-of-Text-Classification" type="462c0819:PsiDirectoryNode" />
               <item name="01KreasLSTM" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Implementation-of-Text-Classification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Implementation-of-Text-Classification" type="462c0819:PsiDirectoryNode" />
+              <item name="01KreasLSTM" type="462c0819:PsiDirectoryNode" />
+              <item name="text-classification-cnn-rnn-master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Implementation-of-Text-Classification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Implementation-of-Text-Classification" type="462c0819:PsiDirectoryNode" />
+              <item name="01KreasLSTM" type="462c0819:PsiDirectoryNode" />
+              <item name="text-classification-cnn-rnn-master" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Implementation-of-Text-Classification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Implementation-of-Text-Classification" type="462c0819:PsiDirectoryNode" />
+              <item name="01KreasLSTM" type="462c0819:PsiDirectoryNode" />
+              <item name="text-classification-cnn-rnn-master" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Implementation-of-Text-Classification" type="b2602c69:ProjectViewProjectNode" />
@@ -235,19 +264,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555659400867</updated>
-      <workItem from="1555659402169" duration="8519000" />
+      <workItem from="1555659402169" duration="24086000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8519000" />
+    <option name="totallyTimeSpent" value="24086000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="696" y="34" width="1918" height="962" extended-state="0" />
+    <frame x="153" y="51" width="1918" height="962" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11840689" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13132401" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -257,12 +286,12 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20531401" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18478261" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" x="873" y="260" width="964" height="675" id="SciView" type="WINDOWED" visible="true" weight="0.32992464" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -271,17 +300,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/01KreasLSTM/lstmm.py</url>
-          <line>2</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-and-sequence-master/process_data.py">
@@ -297,11 +315,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/01KreasLSTM/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-787" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/01KreasLSTM/ProcessData.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -309,21 +322,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/word_index_dict.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10773" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/01KreasLSTM/lstmm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
+        <state relative-caret-position="1615">
+          <caret line="105" selection-start-line="105" selection-end-line="107" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/images/acc_loss.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/images/acc_loss_rnn.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/images/cnn_architecture.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/images/rnn_architecture.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/cnn_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-909" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="893">
+          <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01KreasLSTM/text-classification-cnn-rnn-master/data/cnews_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-662" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/01KreasLSTM/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-722">
-          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        <state relative-caret-position="352">
+          <caret line="154" column="24" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="24" />
           <folding>
             <element signature="e#45#54#0" expanded="true" />
-            <element signature="e#1104#1392#0" />
-            <element signature="e#2427#3193#0" />
+            <element signature="e#3247#4080#0" />
           </folding>
         </state>
       </provider>
