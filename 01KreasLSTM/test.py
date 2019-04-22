@@ -1,69 +1,54 @@
-import numpy as np
-#
-# samples = ['The cat sat on the mat.', 'The dog ate my homework.']
-#
-# # 10
-# # 定义一个集合
-# token_index = {}
-# for sample in samples:
-#     for word in sample.split():
-#         if word not in token_index:
-#             token_index[word] = len(token_index) + 1
-#
-#
-# max_length = 10
-# results = np.zeros(shape=(len(samples),
-#                           max_length,
-#                           max(token_index.values()) + 1))
-#
-# # print(results) 2, 10, 11
-# for i, sample in enumerate(samples):
-#     for j, word in list(enumerate(sample.split()))[:max_length]:
-#         index = token_index.get(word)
-#         results[i, j, index] = 1.
-#
-#
-# print(results)
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
+import json
+import os
+import jieba
+import tensorflow as tf
+from tensorflow import keras
 
-# import string
-# samples = ['The cat sat on the mat.', 'The dog ate my homework.']
-# characters = string.printable
-# token_index = dict(zip(range(1, len(characters) + 1), characters))
-#
-# max_length = 50
-# results = np.zeros((len(samples), max_length, max(token_index.keys()) + 1))
-# for i, sample in enumerate(samples):
-#     for j, character in enumerate(sample):
-#         for key, value in token_index.items():
-#             if value == character:
-#                 index = key
-#                 results[i, j, index] = 1.
-#
-#         # index = token_index.get(character)
-#
-# print(results)
-# from keras.preprocessing.text import Tokenizer
-#
-# samples = ['The cat sat on the mat.', 'The dog ate my homework.']
-# tokenizer = Tokenizer(num_words=1000)
-# tokenizer.fit_on_texts(samples)
-#
-# sequences = tokenizer.texts_to_sequences(samples)
-# one_hot_results = tokenizer.texts_to_matrix(samples, mode='binary')
-#
-# word_index = tokenizer.word_index
-# print('Found %s unique tokens.' % len(word_index))
+def get_predict_data():
+    db_dir = r'G:\tf-start\Implementation-of-Text-Classification\dataset'
+    filename = 'work'  # 需要分类处理的文档路径
+    work_dir = os.path.join(db_dir, filename)
 
-samples = ['The cat sat on the mat.', 'The dog ate my homework.']
-
-dimensionality = 1000
-max_length = 10
-
-results = np.zeros((len(samples), max_length, dimensionality))
-for i, sample in enumerate(samples):
-    for j, word in list(enumerate(sample.split()))[:max_length]:
-        index = abs(hash(word)) % dimensionality
-        results[i, j, index] = 1
+    texts = []
+    for fname in os.listdir(work_dir):
+        if fname[-4:] == '.txt':
+            f = open(os.path.join(work_dir, fname), 'r', encoding='UTF-8')
+            texts.append(f.read())
+            f.close()
+    return texts
 
 
-print(results)
+def pereworkdata(data):
+    work_data = []
+    seg_content_list = [[] for index in range(len(data))]  # 存储每条content的分词结果
+    count_word_frequency = {}  # 存储文档中出现的词
+    with open('word_index_dict.json', 'r', encoding='utf-8') as load_f:
+        word_index_dic = json.load(load_f)
+        print(word_index_dic)
+    for i in range(len(data)):
+        word_list = []
+        seg_content_data = jieba.cut(data[i])
+        for word in seg_content_data:
+            if word in word_index_dic:
+                word_list.append(word_index_dic[word])
+            else:
+                word_list.append(0)
+        work_data.append(word_list)
+    print(work_data)
+    return work_data
+
+
+
+if __name__ == '__main__':
+    worktexts = get_predict_data()
+    data = pereworkdata(worktexts)
+    train_data = keras.preprocessing.sequence.pad_sequences(data,
+                                                            padding='post',
+                                                            maxlen=300)
+    print('Shape of data tensor:', train_data.shape)
+    model = keras.models.load_model('pre_trained_model_1.h5')
+
+    test_acc = model.predict(train_data)
+    print('评估模型效果(损失-精度）：...', test_acc)

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
 import os
-from keras.preprocessing.text import Tokenizer
 from tensorflow import keras
 import tensorflow as tf
 import numpy as np
@@ -14,11 +13,11 @@ import json
 
 # settings
 max_len = 300
-training_samples = 200
-validation_samples = 16
+training_samples = 180
+validation_samples = 20
 max_words = 14073 + 2
 embedding_dim = 16
-epoch_num = 2000
+epoch_num = 5000
 
 
 def peredata():
@@ -32,13 +31,13 @@ def peredata():
     labels, texts = process_data(filename)
     word_index_dic = {}  # 存储全部文档中出现的词及对应的编码
     seg_content_list = [[] for index in range(len(labels))]  # 存储每条content的分词结果
-    count_word_frequency = {}  # 存储文档中出现的词及其对应的出现次数
+    count_word_frequency = {}  # 存储文档中出现的词
 
     for i in range(len(texts)):
         seg_content_data = jieba.cut(texts[i])
         for word in seg_content_data:
             seg_content_list[i].append(word)
-            if word not in count_word_frequency:
+            if word not in word_index_dic:
                 word_index_dic[word] = len(word_index_dic) + 1
     # with open('word_index_dict.json', 'w', encoding='utf-8') as f:
     #     json.dump(word_index_dic, f, ensure_ascii=False)
@@ -115,8 +114,8 @@ def train_model(train_data, train_label, word_index):
     x_val = train_data[training_samples: training_samples + validation_samples]
     y_val = train_label[training_samples: training_samples + validation_samples]
 
-    test_data = train_data[0:20]
-    test_labels = train_label[0:20]
+    test_data = train_data[200:]
+    test_labels = train_label[200:]
 
     history = model.fit(x_train, y_train,
                         epochs=epoch_num,
@@ -158,3 +157,8 @@ def train_model(train_data, train_label, word_index):
 if __name__ == '__main__':
     train_data, train_label, word_index_dic = peredata()
     train_model(train_data, train_label, word_index_dic)
+
+
+    # model = keras.models.Sequential()
+    # model.load_weights('pre_trained_model_1.h5')
+    # test_acc = model.predict()
