@@ -5,12 +5,18 @@ import os
 import jieba
 import tensorflow as tf
 from tensorflow import keras
+from GetWorkFiles import Translate
+
+db_dir = r'G:\tf-start\Implementation-of-Text-Classification\dataset'
+filename = r'work\bzrlt'  # 需要分类处理的文档路径
+# filename = r'work\dyal'  # 需要分类处理的文档路径
+# filename = r'work\wenku'  # 需要分类处理的文档路径
+# filename = r'work\wenku_deyuanli'  # 需要分类处理的文档路径
+work_dir = os.path.join(db_dir, filename)
+# settings
+max_len = 200
 
 def get_predict_data():
-    db_dir = r'G:\tf-start\Implementation-of-Text-Classification\dataset'
-    filename = 'work'  # 需要分类处理的文档路径
-    work_dir = os.path.join(db_dir, filename)
-
     texts = []
     for fname in os.listdir(work_dir):
         if fname[-4:] == '.txt':
@@ -40,15 +46,24 @@ def pereworkdata(data):
     return work_data
 
 
-
 if __name__ == '__main__':
     worktexts = get_predict_data()
+    for ll in worktexts:
+        print(len(ll))
+
     data = pereworkdata(worktexts)
     train_data = keras.preprocessing.sequence.pad_sequences(data,
                                                             padding='post',
-                                                            maxlen=300)
+                                                            maxlen=max_len)
     print('Shape of data tensor:', train_data.shape)
-    model = keras.models.load_model('pre_trained_model_1.h5')
-
+    # 导入模型
+    # model = keras.models.load_model('pre_trained_MLPmodel_1.h5')
+    model = keras.models.load_model('pre_trained_LSTMmodel_1.h5')
     test_acc = model.predict(train_data)
-    print('评估模型效果(损失-精度）：...', test_acc)
+    for i in range(len(test_acc)):
+        # print(test_acc[i])
+        if test_acc[i] > 0.55:
+            print('文件：', i, '...', test_acc[i])
+            # Translate(work_dir, i)
+
+    print('over')

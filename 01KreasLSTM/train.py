@@ -5,19 +5,20 @@ from tensorflow import keras
 import tensorflow as tf
 import numpy as np
 from keras.models import Sequential
-from keras.layers import Embedding, Flatten, Dense
+# from keras.layers import Embedding, Flatten, Dense
 import matplotlib.pyplot as plt
 from ProcessData import process_data
 import jieba
 import json
 
 # settings
-max_len = 300
-training_samples = 180
-validation_samples = 20
-max_words = 14073 + 2
-embedding_dim = 16
-epoch_num = 5000
+max_len = 200
+training_samples = 250
+validation_samples = 30
+max_words = 27359 + 2
+embedding_dim = 4
+epoch_num = 200
+batch_size_num = 32
 
 
 def peredata():
@@ -93,11 +94,21 @@ def train_model(train_data, train_label, word_index):
     训练模型
     :return:训练时loss,acc
     '''
-    model = Sequential()
-    model.add(Embedding(max_words, embedding_dim, input_length=max_len))
-    model.add(Flatten())
-    model.add(Dense(16, activation=tf.nn.relu))
-    model.add(Dense(1, activation=tf.nn.sigmoid))
+    model = keras.Sequential()
+    model.add(keras.layers.Embedding(max_words, embedding_dim, input_length=max_len))
+
+    #MLP Model
+    # model.add(keras.layers.Flatten())
+    # model.add(keras.layers.Dense(16, activation=tf.nn.relu))
+    # model.add(keras.layers.Dense(1, activation=tf.nn.sigmoid))
+
+    #LSTM Model
+    model.add(keras.layers.LSTM(128, activation=tf.nn.sigmoid))
+    model.add(keras.layers.Dropout(0.5))
+    # model.add(keras.layers.GlobalAveragePooling1D())
+    model.add(keras.layers.Dense(16, activation=tf.nn.relu))
+    model.add(keras.layers.Dense(1, activation=tf.nn.sigmoid))
+
     model.summary()
 
     # 将sgns加载到模型中
@@ -119,12 +130,15 @@ def train_model(train_data, train_label, word_index):
 
     history = model.fit(x_train, y_train,
                         epochs=epoch_num,
-                        batch_size=16,
+                        batch_size=batch_size_num,
                         validation_data=(x_val, y_val))
+    # 保存评估MLP模型专用
+    # model.save('pre_trained_MLPmodel_1.h5')
+    # model.load_weights('pre_trained_MLPmodel_1.h5')
 
-    model.save('pre_trained_model_1.h5')
-    # 评估专用
-    model.load_weights('pre_trained_model_1.h5')
+    # 保存评估LSTM模型专用
+    model.save('pre_trained_LSTMmodel_1.h5')
+    model.load_weights('pre_trained_LSTMmodel_1.h5')
     test_acc = model.evaluate(test_data, test_labels)
     print('评估模型效果(损失-精度）：...', test_acc)
 

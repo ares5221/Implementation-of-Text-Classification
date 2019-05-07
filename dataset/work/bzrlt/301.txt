@@ -1,0 +1,8 @@
+在班级管理中遇到与学生发生冲突时的解决策略(潘大宏)
+发布人:管理员  时间：2004/6/5 17:02:24
+无法显示 XML 页。使用 XSL 样式表无法查看 XML 输入。请更正错误然后单击刷新按钮，或以后重试。应有一个字符串文字, 但找不到左引号。处理资源 'http://www.jsyzyz.com/editor1.asp?id=3962' 时出错。第 1 行，位置: 37<P style="TEXT-ALIGN: center" align=center><B><FONT size=2><SPAN style="FONT-FAMILY: 
+------------------------------------^
+使用 XSL 样式表无法查看 XML 输入。请更正错误然后单击刷新按钮，或以后重试。应有一个字符串文字, 但找不到左引号。处理资源 'http://www.jsyzyz.com/editor1.asp?id=3962' 时出错。第 1 行，位置: 37<P style="TEXT-ALIGN: center" align=center><B><FONT size=2><SPAN style="FONT-FAMILY: 
+------------------------------------^
+应有一个字符串文字, 但找不到左引号。处理资源 'http://www.jsyzyz.com/editor1.asp?id=3962' 时出错。第 1 行，位置: 37
+
