@@ -158,7 +158,7 @@ def train_model(train_data, train_label):
     testNum = 50
     for i in range(0, testNum):
         # x_train, x_val, y_train, y_val = train_test_split(train_data, train_label, test_size=0.4)
-        lr_model = LogisticRegression(solver='saga', max_iter=100, C=1e6, penalty='l2')
+        lr_model = LogisticRegression(solver='liblinear', C=1e6, penalty='l2')
         lr_model.fit(x_train, y_train)
         print("val mean accuracy: {0}".format(lr_model.score(x_val, y_val)))
         y_pred = lr_model.predict(x_val)
