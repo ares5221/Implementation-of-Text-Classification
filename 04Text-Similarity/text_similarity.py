@@ -58,12 +58,12 @@ class cosSim:
         self.logger.debug("corpus %s", corpus)
         vectorizer = CountVectorizer(vocabulary=vocabulary)  # 该类会将文本中的词语转换为词频矩阵，矩阵元素a[i][j] 表示j词在i类文本下的词频
         transformer = TfidfTransformer()  # 该类会统计每个词语的tf-idf权值
-        self.logger.debug("tf矩阵 %s", vectorizer.fit_transform(corpus))
+        # self.logger.debug("tf矩阵 %s", vectorizer.fit_transform(corpus))
         tfidf = transformer.fit_transform(
             vectorizer.fit_transform(corpus))  # 第一个fit_transform是计算tf-idf，第二个fit_transform是将文本转为词频矩阵
         weight = tfidf.toarray()  # 将tf-idf矩阵抽取出来，元素a[i][j]表示j词在i类文本中的tf-idf权重
         # weight = sorted(weight[0], reverse=True)
-        self.logger.debug("weight %s", weight)
+        # self.logger.debug("weight %s", weight)
         return weight
 
     def CalcuSim(self, texts=[]):
