@@ -15,9 +15,9 @@ import json
 max_len = 200
 training_samples = 250
 validation_samples = 30
-max_words = 27359 + 2
-embedding_dim = 4
-epoch_num = 200
+max_words = 28918 + 2
+embedding_dim = 16
+epoch_num = 50
 batch_size_num = 32
 
 
@@ -102,12 +102,25 @@ def train_model(train_data, train_label, word_index):
     # model.add(keras.layers.Dense(16, activation=tf.nn.relu))
     # model.add(keras.layers.Dense(1, activation=tf.nn.sigmoid))
 
+    # CNN Model
+    model.add(keras.layers.Convolution1D(64, 3, padding='same'))
+    model.add(keras.layers.MaxPool1D(6, 6, padding='same'))
+    model.add(keras.layers.Convolution1D(32, 3, padding='same'))
+    model.add(keras.layers.MaxPool1D(3, 3, padding='same'))
+    model.add(keras.layers.Convolution1D(16, 3, padding='same'))
+    model.add(keras.layers.Flatten())
+    model.add(keras.layers.Dropout(0.1))
+    model.add(keras.layers.BatchNormalization())  # (批)规范化层
+    model.add(keras.layers.Dense(16, activation='relu'))
+    model.add(keras.layers.Dropout(0.1))
+    model.add(keras.layers.Dense(1, activation='sigmoid'))
+
     #LSTM Model
-    model.add(keras.layers.LSTM(128, activation=tf.nn.sigmoid))
-    model.add(keras.layers.Dropout(0.5))
-    # model.add(keras.layers.GlobalAveragePooling1D())
-    model.add(keras.layers.Dense(16, activation=tf.nn.relu))
-    model.add(keras.layers.Dense(1, activation=tf.nn.sigmoid))
+    # model.add(keras.layers.LSTM(128, activation=tf.nn.sigmoid))
+    # model.add(keras.layers.Dropout(0.5))
+    # # model.add(keras.layers.GlobalAveragePooling1D())
+    # model.add(keras.layers.Dense(16, activation=tf.nn.relu))
+    # model.add(keras.layers.Dense(1, activation=tf.nn.sigmoid))
 
     model.summary()
 
@@ -132,13 +145,18 @@ def train_model(train_data, train_label, word_index):
                         epochs=epoch_num,
                         batch_size=batch_size_num,
                         validation_data=(x_val, y_val))
-    # 保存评估MLP模型专用
+    # # 保存评估MLP模型专用
     # model.save('pre_trained_MLPmodel_1.h5')
     # model.load_weights('pre_trained_MLPmodel_1.h5')
 
-    # 保存评估LSTM模型专用
-    model.save('pre_trained_LSTMmodel_1.h5')
-    model.load_weights('pre_trained_LSTMmodel_1.h5')
+    # 保存评估CNN模型专用
+    model.save('pre_trained_CNNmodel_1.h5')
+    model.load_weights('pre_trained_CNNmodel_1.h5')
+
+    # # 保存评估LSTM模型专用
+    # model.save('pre_trained_LSTMmodel_1.h5')
+    # model.load_weights('pre_trained_LSTMmodel_1.h5')
+
     test_acc = model.evaluate(test_data, test_labels)
     print('评估模型效果(损失-精度）：...', test_acc)
 

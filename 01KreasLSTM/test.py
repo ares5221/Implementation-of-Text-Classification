@@ -21,6 +21,12 @@ def get_predict_data():
     for fname in os.listdir(work_dir):
         if fname[-4:] == '.txt':
             f = open(os.path.join(work_dir, fname), 'r', encoding='UTF-8')
+            tmp = f.read()
+            if len(tmp) < 30:
+                print(fname)
+            tmp = tmp[20:]
+            # print('#############',tmp)
+            texts.append(tmp)
             texts.append(f.read())
             f.close()
     return texts
@@ -48,8 +54,8 @@ def pereworkdata(data):
 
 if __name__ == '__main__':
     worktexts = get_predict_data()
-    for ll in worktexts:
-        print(len(ll))
+    # for ll in worktexts:
+    #     print(len(ll))
 
     data = pereworkdata(worktexts)
     train_data = keras.preprocessing.sequence.pad_sequences(data,
@@ -58,11 +64,12 @@ if __name__ == '__main__':
     print('Shape of data tensor:', train_data.shape)
     # 导入模型
     # model = keras.models.load_model('pre_trained_MLPmodel_1.h5')
-    model = keras.models.load_model('pre_trained_LSTMmodel_1.h5')
+    model = keras.models.load_model('pre_trained_CNNmodel_1.h5')
+    # model = keras.models.load_model('pre_trained_LSTMmodel_1.h5')
     test_acc = model.predict(train_data)
     for i in range(len(test_acc)):
         # print(test_acc[i])
-        if test_acc[i] > 0.55:
+        if test_acc[i] > 0.6:
             print('文件：', i, '...', test_acc[i])
             # Translate(work_dir, i)
 

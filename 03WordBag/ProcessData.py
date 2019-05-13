@@ -21,9 +21,9 @@ def process_data(filename):
                 f = open(os.path.join(dir_name, fname), 'r', encoding='UTF-8')
                 tmp = f.read()
                 # print(len(tmp), type(tmp))
-                if len(tmp)<50:
-                    print(fname)
-                tmp = tmp[30:]
+                # if len(tmp) > 200:
+                #     print(fname)
+                #     tmp = tmp[:200]
                 # print('#############',tmp)
                 texts.append(tmp)
                 f.close()
