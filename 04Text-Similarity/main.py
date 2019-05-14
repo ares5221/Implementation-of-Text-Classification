@@ -34,7 +34,6 @@ def process_data():
 def find_similarity(datas):
     data_num = len(datas)
     text_similarity = cosSim()
-
     for i in range(data_num):
         for j in range(data_num):
             if i == j:
@@ -46,8 +45,8 @@ def find_similarity(datas):
                 # print(datas[i+1], type(datas[i+1]))
                 ss = text_similarity.CalcuSim([txt1, txt2])
                 # print(ss)
-                if ss > 0.8:
-                    print('相似的文档是：', i, '<----->', j)
+                if ss > 0.95:
+                    print('相似的文档是：', i, '<----->', j, '<----->', ss)
 
 
 
@@ -55,14 +54,12 @@ def find_similarity(datas):
 
 if __name__ == "__main__":
     texts = process_data()
-
     find_similarity(texts)
+    print('所有文档的相似度已经比较完成！')
+    ##  test
+    # a = cosSim()
+    # r = a.CalcuSim(["你好奥众，今天是星期三", "你好奥迪，今天是星期五"])
+    # print(r)
 
-#
-# r = a.CalcuSim(["你好奥众，今天是星期三", "你好奥迪，今天是星期五"])
-# print(r)
-# r = a.CalcuSim(["你好奥众，今天是星期三", "你好大众，今天是星期四"])
-# print(r)
-#
-# r = a.CalcuSim(["以下是README的一些说明，我们可以看到模型的识别效果总体还是不错的", "我们可以看到模型的识别效果总体还是不错的，以下是README的一些说明"])
-# print(r)
+
+

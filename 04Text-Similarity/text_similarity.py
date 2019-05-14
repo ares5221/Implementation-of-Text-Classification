@@ -18,7 +18,7 @@ class cosSim:
             # 设置日志
             formater = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
             fh = logging.StreamHandler()  # 输出到终端
-            fh.setLevel(level=logging.DEBUG)
+            fh.setLevel(level=logging.DEBUG) # error以上的内容输出到文件里面
             fh.setFormatter(formater)
             self.logger.addHandler(fh)
 
@@ -51,11 +51,11 @@ class cosSim:
         tfidf = transformer.fit_transform(
             vectorizer.fit_transform(corpuss))  # 第一个fit_transform是计算tf-idf，第二个fit_transform是将文本转为词频矩阵
         words = vectorizer.get_feature_names()  # 获取词袋模型中的所有词语
-        self.logger.debug("words %s", words)
+        # self.logger.debug("words %s", words)
         return words
 
     def getVector(self, corpus, vocabulary):
-        self.logger.debug("corpus %s", corpus)
+        # self.logger.debug("corpus %s", corpus)
         vectorizer = CountVectorizer(vocabulary=vocabulary)  # 该类会将文本中的词语转换为词频矩阵，矩阵元素a[i][j] 表示j词在i类文本下的词频
         transformer = TfidfTransformer()  # 该类会统计每个词语的tf-idf权值
         # self.logger.debug("tf矩阵 %s", vectorizer.fit_transform(corpus))
@@ -95,12 +95,6 @@ if __name__ == "__main__":
     v = cosSim.getVector(corpuss, vocabulary=vocabulary)
     print(cosSim.cos_sim(v[0], v[1]))
 
-    # VectorA = getVector([corpuss[0]], vocabulary)
-    # VectorB = getVector([corpuss[1]], vocabulary)
-    # # for i in range(len(weight)):  # 打印每类文本的tf-idf词语权重，第一个for遍历所有文本，第二个for便利某一类文本下的词语权重
-    # #     print("-------这里输出第", i, u"类文本的词语tf-idf权重------")
-    # #     for j in range(len(word)):
-    # #         print(word[j], weight[i][j])
-    # #
-    # #
-    # print(cos_sim(VectorA, VectorB))
+    # VectorA = cosSim.getVector([corpuss[0]], vocabulary)
+    # VectorB = cosSim.getVector([corpuss[1]], vocabulary)
+    # print(cosSim.cos_sim(VectorA, VectorB))
