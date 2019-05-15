@@ -49,17 +49,11 @@ def find_similarity(datas):
                     print('相似的文档是：', i, '<----->', j, '<----->', ss)
 
 
-
-
-
 if __name__ == "__main__":
     texts = process_data()
     find_similarity(texts)
     print('所有文档的相似度已经比较完成！')
-    ##  test
+    #  #test
     # a = cosSim()
     # r = a.CalcuSim(["你好奥众，今天是星期三", "你好奥迪，今天是星期五"])
     # print(r)
-
-
-
