@@ -12,10 +12,12 @@ def read_ann():
     读取文件夹下ann文本的内容，读取其中title, 对应label
     :return: titles, labels
     '''
+    # 新的第二部分标注数据109
+    annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part3_ann_label')
     # # 新的第二部分标注数据109
     # annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part2_ann_label')
-    # 旧的第一部分标注数据176
-    annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part1_ann_label')
+    # # 旧的第一部分标注数据176
+    # annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part1_ann_label')
     print('待比较文档路径：', annFilePath)
     titles = []
     labels = []
@@ -313,7 +315,8 @@ def save_excel(titles, labels, ID):
     '''
 
     # workbook = xlsxwriter.Workbook('part2_labels.xlsx')
-    workbook = xlsxwriter.Workbook('part1_labels.xlsx')
+    workbook = xlsxwriter.Workbook('part3_labels.xlsx')
+    # workbook = xlsxwriter.Workbook('part1_labels.xlsx')
     worksheet = workbook.add_worksheet()  # 建立sheet， 可以work.add_worksheet('employee')来指定sheet名，但中文名会报UnicodeDecodeErro的错误
 
     row = 1
