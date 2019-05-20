@@ -96,8 +96,12 @@ def get_max_content_length(data_list):
 def build_model(train_data,train_label):
     print('step4: start build model...')
     # print('计算得到文本最大长度为-->',get_max_content_length(train_data))
-    max_len = 300  # 计算得到文本最大长度为491
+    max_len = 100  # 计算得到文本最大长度为491
     max_words = 11525 +2  # 统计得到该文档用到的词的个数19307/20000
+    epochs_num = 300
+    batch_size_num = 64
+
+
     train_data = keras.preprocessing.sequence.pad_sequences(train_data,
                                                             padding='post',
                                                             maxlen=max_len)
@@ -128,8 +132,8 @@ def build_model(train_data,train_label):
 
     history = model.fit(partial_x_train,
                         partial_y_train,
-                        epochs=100,
-                        batch_size=64,
+                        epochs=epochs_num,
+                        batch_size=batch_size_num,
                         validation_data=(x_val, y_val),
                         shuffle=True
                         )
