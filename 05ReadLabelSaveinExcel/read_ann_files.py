@@ -13,9 +13,9 @@ def read_ann():
     :return: titles, labels
     '''
     # 新的第二部分标注数据109
-    annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part3_ann_label')
+    # annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part3_ann_label')
     # # 新的第二部分标注数据109
-    # annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part2_ann_label')
+    annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part2_ann_label')
     # # 旧的第一部分标注数据176
     # annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part1_ann_label')
     print('待比较文档路径：', annFilePath)
