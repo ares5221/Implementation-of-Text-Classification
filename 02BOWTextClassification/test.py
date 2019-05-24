@@ -5,21 +5,16 @@ import os
 import jieba
 import numpy as np
 from tensorflow import keras
-from GetWorkFiles import Translate
+from change_file_name import Translate
 import pickle
 
 db_dir = r'G:\tf-start\Implementation-of-Text-Classification\dataset'
 filename = r'work\bzrlt'  # 需要分类处理的文档路径
-# filename = r'work\dyal'  # 需要分类处理的文档路径
-# filename = r'work\wenku'  # 需要分类处理的文档路径
-filename = r'work\wenku2'  # 需要分类处理的文档路径
-filename = r'work\wenku3'  # 需要分类处理的文档路径
-# filename = r'work\wenku4'  # 需要分类处理的文档路径
-
+filename = r'work\dyal'  # 需要分类处理的文档路径
+filename = r'work\wenku'  # 需要分类处理的文档路径
 # filename = r'work\wenku_deyuanli'  # 需要分类处理的文档路径
 work_dir = os.path.join(db_dir, filename)
-# settings
-max_len = 200
+
 
 def get_predict_data():
     texts = []
@@ -27,10 +22,10 @@ def get_predict_data():
         if fname[-4:] == '.txt':
             f = open(os.path.join(work_dir, fname), 'r', encoding='UTF-8')
             tmp = f.read()
-            if len(tmp) > 200:
-                print(fname)
-                tmp = tmp[0:200]
-            print('#############',len(tmp))
+            # if len(tmp) > 200:
+            #     print(fname)
+            #     tmp = tmp[0:200]
+            # print('#############',len(tmp))
             texts.append(tmp)
             f.close()
     return texts
@@ -74,7 +69,7 @@ def pereworkdata(data):
 
 
 if __name__ == '__main__':
-    if 1 == 0:
+    if 1 == 1:
         worktexts = get_predict_data()
         data = pereworkdata(worktexts)
         train_data = np.array(data)
@@ -82,20 +77,14 @@ if __name__ == '__main__':
     #    np.save("work1.npy", train_data)
     # if not os.path.exists('work2.npy'):
     #    np.save("work2.npy", train_data)
-    # if not os.path.exists('work31.npy'):
-    #     np.save("work31.npy", train_data)
-    # if not os.path.exists('work32.npy'):
-    #     np.save("work32.npy", train_data)
-    if not os.path.exists('work33.npy'):
-        np.save("work33.npy", train_data)
-    # if not os.path.exists('work3.npy'):
-    #    np.save("work3.npy", train_data)
+    if not os.path.exists('work3.npy'):
+       np.save("work3.npy", train_data)
     # if not os.path.exists('work4.npy'):
     #    np.save("work4.npy", train_data)
-    train_data = np.load("work33.npy")
+    train_data = np.load("work3.npy")
     print('Shape of data tensor:', train_data.shape)
     # 导入读取模型`
-    with open('LRModel--1.pickle', 'rb') as f:
+    with open('LRModel.pickle', 'rb') as f:
         LRMModel = pickle.load(f)
         # 测试读取后的Model
     print(LRMModel.predict(train_data))
@@ -108,7 +97,7 @@ if __name__ == '__main__':
     # test_acc = SVMModel.predict(train_data)
     for i in range(len(test_acc)):
         # print(test_acc[i])
-        if test_acc[i] > 0.6:
+        if test_acc[i] > 0.8:
             print('文件：', i, '...', test_acc[i])
             # Translate(work_dir, i)
 

@@ -16,9 +16,8 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer
 
 # settings
-training_samples = 300
-validation_samples = 264
-max_words = 28918 + 2
+training_samples = 550
+validation_samples = 14
 
 '''采用词袋模型来编码文章'''
 
@@ -74,17 +73,7 @@ def peredata():
         f_word_dic.close()  # 将文件关闭
         print('读取到词表的大小为： ', len(word_dic))
         print(word_dic)
-    print('通过停用词表清除词汇后词表个数：', len(word_dic))
-    # for sss in seg_content_list:
-    #     print(sss)
-    # print(seg_content_list)
-    # step3 TF-IDF
-    # vectorizer = CountVectorizer(min_df=1e-5)  # drop df < 1e-5,去低频词
-    # transformer = TfidfTransformer()
-    # tfidf = transformer.fit_transform(vectorizer.fit_transform(corpus_set))
-    # words = vectorizer.get_feature_names()
-
-    print(word_dic)
+    print('通过停用词表清除词汇后词表个数：', len(word_dic), word_dic)
     return seg_content_list, word_dic, labels
 
 
@@ -155,10 +144,10 @@ def train_model(train_data, train_label):
     start_time = time.time()
     # # LogisticRegression classiy model
     average = 0
-    testNum = 50
+    testNum = 1
     for i in range(0, testNum):
         # x_train, x_val, y_train, y_val = train_test_split(train_data, train_label, test_size=0.4)
-        lr_model = LogisticRegression(solver='liblinear', C=1e6, penalty='l2')
+        lr_model = LogisticRegression(solver='liblinear', C=1e3, penalty='l2')
         lr_model.fit(x_train, y_train)
         print("val mean accuracy: {0}".format(lr_model.score(x_val, y_val)))
         y_pred = lr_model.predict(x_val)
@@ -175,7 +164,7 @@ def train_model(train_data, train_label):
     plot_pr(0.5, precision, recall, "pos")
 
     # 保存Model(注:save文件夹要预先建立，否则会报错)
-    with open('LRModel--1.pickle', 'wb') as f:
+    with open('LRModel.pickle', 'wb') as f:
         pickle.dump(lr_model, f)
     # # SVM classiy model
     # svm_model = SVC(gamma='auto')

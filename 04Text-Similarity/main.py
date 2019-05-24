@@ -18,6 +18,7 @@ def process_data():
     texts = []
     for fname in os.listdir(dir_name):
         if fname[-4:] == '.txt':
+            print(fname)
             f = open(os.path.join(dir_name, fname), 'r', encoding='UTF-8')
             tmp = f.read()
             # print(len(tmp), type(tmp))
@@ -44,8 +45,9 @@ def find_similarity(datas):
                 txt1, txt2 = datas[i], datas[j]
                 # print(datas[i+1], type(datas[i+1]))
                 ss = text_similarity.CalcuSim([txt1, txt2])
-                # print(ss)
-                if ss > 0.95:
+                if ss > 0.75:
+                    print(ss)
+                if ss > 0.9:
                     print('相似的文档是：', i, '<----->', j, '<----->', ss)
 
 

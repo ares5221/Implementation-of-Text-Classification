@@ -34,6 +34,8 @@ def process_data(filename):
     print(len(labels), len(texts))
     # for tt in texts:
     #     print('@@@@@@@@@@@@@@@', tt)
+    # for ss in labels:
+    #     print('###############', ss)
     return labels, texts
 
 
