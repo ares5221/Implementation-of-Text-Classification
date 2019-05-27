@@ -4,8 +4,7 @@ import json
 import os
 import jieba
 import numpy as np
-from tensorflow import keras
-from change_file_name import Translate
+from change_file_name_save import Translate
 import pickle
 
 db_dir = r'G:\tf-start\Implementation-of-Text-Classification\dataset'
@@ -69,7 +68,7 @@ def pereworkdata(data):
 
 
 if __name__ == '__main__':
-    if 1 == 1:
+    if 1 == 0:
         worktexts = get_predict_data()
         data = pereworkdata(worktexts)
         train_data = np.array(data)
@@ -99,6 +98,6 @@ if __name__ == '__main__':
         # print(test_acc[i])
         if test_acc[i] > 0.8:
             print('文件：', i, '...', test_acc[i])
-            # Translate(work_dir, i)
+            Translate(work_dir, i)
 
     print('over')

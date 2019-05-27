@@ -9,7 +9,7 @@ all_FileNum = 0
 def Translate(workpath, index):
     '''
     将index.txt文件中按句号断句。段之间加一个换行符号相隔两行，句子中的。后面加一个换行符号。
-    并将文件名称修改为id + title
+    并将文件名称修改为id + title,保存在该路径下new文件夹下，该文件夹需手动创建
     :param path: 待处理的文件name
     :return:
     '''
@@ -37,6 +37,8 @@ def Translate(workpath, index):
         with open(filepath, 'r', encoding='utf-8') as f:  # 设置文件对象
             first_line = f.readline()  # 读取文本第一行作为其title
             text_name = first_line.strip()
+            if len(text_name) > 20:
+                text_name = text_name[:20]
             str1 = f.read()  # 读取全部文本按句号分段
             str1 = re.sub(pattern_rule2, '\n\n', str1)
             str1 = re.sub(pattern_rule, '。\n', str1)  # str = str.replace('。', '。\n')
