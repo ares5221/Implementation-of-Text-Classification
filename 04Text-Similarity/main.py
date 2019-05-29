@@ -2,8 +2,7 @@
 # _*_ coding:utf-8 _*_
 from text_similarity import cosSim
 import os
-
-'''比较docs路径下所有文本之间的相似度，若相似度大于0.8，则输出文件名'''
+from repath_similarity_file import change_similary_file_path
 
 
 def process_data():
@@ -21,11 +20,6 @@ def process_data():
             print(fname)
             f = open(os.path.join(dir_name, fname), 'r', encoding='UTF-8')
             tmp = f.read()
-            # print(len(tmp), type(tmp))
-            # if len(tmp) > 200:
-            #     print(fname)
-            #     tmp = tmp[:200]
-            # print('#############', tmp)
             texts.append(tmp)
             f.close()
     print('读取到', len(texts), '篇文档')
@@ -35,20 +29,16 @@ def process_data():
 def find_similarity(datas):
     data_num = len(datas)
     text_similarity = cosSim()
-    for i in range(data_num):
-        for j in range(data_num):
-            if i == j:
-                # print('自己和自己不比较啦，因为相似度是1')
-                continue
-            else:
-                # print(datas[i], type(datas[i]))
-                txt1, txt2 = datas[i], datas[j]
-                # print(datas[i+1], type(datas[i+1]))
-                ss = text_similarity.CalcuSim([txt1, txt2])
-                if ss > 0.75:
-                    print(ss)
-                if ss > 0.9:
-                    print('相似的文档是：', i, '<----->', j, '<----->', ss)
+    for i in range(680,data_num -1):
+        for j in range(i+1, data_num):
+            # print(datas[i], type(datas[i]))
+            txt1, txt2 = datas[i], datas[j]
+            ss = text_similarity.CalcuSim([txt1, txt2])
+            if ss > 0:
+                print('maybe相似的文档是：', i, '<----->', j, '<----->', ss)
+            if ss > 0.98:  # 若相似度大于0.95，则输出文件名
+                print('相似的文档是：', i, '<----->', j, '<----->', ss)
+                change_similary_file_path(i,j)
 
 
 if __name__ == "__main__":

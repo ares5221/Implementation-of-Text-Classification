@@ -11,7 +11,7 @@ def change_file_name():
     '''
     documentsPath = os.path.abspath('../dataset/DocumentsForChangeName/')
     print('待修改文件名的文档路径：', documentsPath)
-    startIndex = 627  # 当前路径下索引号开始位置
+    startIndex = 552  # 当前路径下索引号开始位置
     filename_list = os.listdir(documentsPath)
     print(filename_list)
     # filename_list.sort(key=lambda x:(x[:-4]))
@@ -33,7 +33,7 @@ def change_file_name():
                 indexstr = '0' + str(indexstr)
             else:
                 indexstr = str(indexstr)
-            newname = documentsPath + indexstr + ' ' + filename_list[n][5:]
+            newname = documentsPath + indexstr + ' ' + filename_list[n][10:]
 
             os.rename(oldname, newname)
             print(oldname, '======>', newname)

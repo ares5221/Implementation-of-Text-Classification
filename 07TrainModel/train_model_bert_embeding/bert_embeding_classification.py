@@ -80,26 +80,25 @@ def build_model(train_data,train_label):
     # train_label = np.array(train_label)
 
     model = keras.Sequential()
-    # model.add(keras.layers.Embedding(max_words, 16))
+    # model.add(keras.layers.Embedding(768, 16))
     # model.add(keras.layers.LSTM(95,activation='relu',input_shape=(2000,758)))
     # model.add(keras.layers.Dropout(0.2))
     # model.add(keras.layers.GlobalAveragePooling1D())
     # model.add(keras.layers.Dense(64, activation=tf.nn.relu))
-    model.add(keras.layers.Dense(95, activation=tf.nn.sigmoid))
-    # model.add(keras.layers.Activation(tf.nn.softmax))
+    model.add(keras.layers.Dense(95, activation=tf.nn.softmax))
     model.summary()
     # 损失函数和优化
     model.compile(optimizer=tf.train.AdamOptimizer(),
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
 
-    x_val = train_data[2000:2500]
-    partial_x_train = train_data[0:2000]
-    y_val = train_label[2000:2500]
-    partial_y_train = train_label[0:2000]
+    x_val = train_data[2500:2800]
+    partial_x_train = train_data[0:2500]
+    y_val = train_label[2500:2800]
+    partial_y_train = train_label[0:2500]
 
-    test_data = train_data[2500:]
-    test_labels = train_label[2500:]
+    test_data = train_data[2800:]
+    test_labels = train_label[2800:]
 
     history = model.fit(partial_x_train,
                         partial_y_train,
