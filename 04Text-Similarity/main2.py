@@ -46,7 +46,7 @@ def find_similarity(data_old, data_new):
         if max_sim > 0.95:  # 若相似度大于0.95，则输出文件名
             print('相似的文档是：', i, '<----->', max_idx, '<----->', max_sim)
             file_index.append(max_idx)
-    with open('file_index.txt', 'w', encoding='utf-8') as f:
+    with open('file_index.txt', 'a', encoding='utf-8') as f:
         f.write(str(file_index))
     similary_file_repath(file_index)
 
@@ -58,6 +58,7 @@ def similary_file_repath(list_idx):
     newfile_dir = 'needdelete''\\'
     if not os.path.exists(documentsPath + newfile_dir):
         os.mkdir(documentsPath + newfile_dir)
+    list_idx = list(set(list_idx))
     for i in list_idx:
         filename = documentsPath + filename_list[i]
         repath = documentsPath + newfile_dir + filename_list[i]

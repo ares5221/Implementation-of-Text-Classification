@@ -80,7 +80,7 @@ def build_model(train_data,train_label):
     # train_label = np.array(train_label)
 
     model = keras.Sequential()
-    # model.add(keras.layers.Embedding(768, 16))
+    model.add(keras.layers.Embedding(768, 16))
     # model.add(keras.layers.LSTM(95,activation='relu',input_shape=(2000,758)))
     # model.add(keras.layers.Dropout(0.2))
     # model.add(keras.layers.GlobalAveragePooling1D())

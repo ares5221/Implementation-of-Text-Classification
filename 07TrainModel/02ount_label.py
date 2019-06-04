@@ -4,9 +4,11 @@ import numpy as np
 import os
 import pandas as pd
 
+
+# 统计数据中label出现次数的情况
 def read_data(datapath):
-    df = pd.read_csv(datapath, encoding='utf-8')# pandas读取csv数据
-    print(df.shape)#查看数据大小
+    df = pd.read_csv(datapath, encoding='utf-8')  # pandas读取csv数据
+    print(df.shape)  # 查看数据大小
     # print(df.head())#查看前5行
     # print(df['Label'])
     # print(df['Content'])
@@ -33,10 +35,10 @@ def make_label(df):
 
 def count_label(data):
     print(data)
-    count = [0 for i in range(0,95)]
+    count = [0 for i in range(0, 95)]
     for i in data:
         print(i)
-        count[i-1] +=1
+        count[i - 1] += 1
     print(count)
 
 
