@@ -1,5 +1,5 @@
 /dataset/*
-
+/07TrainModel/Multi_Classification_BERT/sim_model
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -7,6 +7,7 @@ __pycache__/
 *.npy
 # C extensions
 *.so
+*.data-00000-of-00001
 
 # Distribution / packaging
 .Python

@@ -273,33 +273,33 @@ def convert_label2value(label_list):
 
             # 育人对策
             if label == 'label82':  # 根本原因
-                label_val[27].append('说服教育法')
+                label_val[27].append('说服教育法' + '-' + val + '\n')
             if label == 'label83':
-                label_val[27].append('情感陶冶法')
+                label_val[27].append('情感陶冶法' + '-' + val + '\n')
             if label == 'label84':
-                label_val[27].append('榜样示范法')
+                label_val[27].append('榜样示范法' + '-' + val + '\n')
             if label == 'label85':
-                label_val[27].append('自我教育法')
+                label_val[27].append('自我教育法' + '-' + val + '\n')
             if label == 'label86':
-                label_val[27].append('实践锻炼法')
+                label_val[27].append('实践锻炼法' + '-' + val + '\n')
             if label == 'label87':
-                label_val[27].append('品德评价法')
+                label_val[27].append('品德评价法' + '-' + val + '\n')
             if label == 'label88':
-                label_val[27].append('赏识教育法')
+                label_val[27].append('赏识教育法' + '-' + val + '\n')
             if label == 'label89':
-                label_val[27].append('学业帮扶法')
+                label_val[27].append('学业帮扶法' + '-' + val + '\n')
             if label == 'label90':
-                label_val[27].append('家庭教育法')
+                label_val[27].append('家庭教育法' + '-' + val + '\n')
             if label == 'label91':
-                label_val[27].append('与社区合作法')
+                label_val[27].append('与社区合作法' + '-' + val + '\n')
             if label == 'label92':
-                label_val[27].append('志愿活动法')
+                label_val[27].append('志愿活动法' + '-' + val + '\n')
             if label == 'label93':
-                label_val[27].append('在家学习法')
+                label_val[27].append('在家学习法' + '-' + val + '\n')
             if label == 'label94':
-                label_val[27].append('与家长沟通法')
+                label_val[27].append('与家长沟通法' + '-' + val + '\n')
             if label == 'label95':
-                label_val[27].append('参与决策法')
+                label_val[27].append('参与决策法' + '-' + val + '\n')
 
     # print(label_val)
 

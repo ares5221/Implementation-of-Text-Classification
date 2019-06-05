@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+Terminal exe:
+
+python BERT_implement.py --task_name=text_classify --vocab_file=G:/downloaddata/bert-chinese/chinese_L-12_H-768_A-12/vocab.txt --bert_config_fi
+le=G:/downloaddata/bert-chinese/chinese_L-12_H-768_A-12/bert_config.json --do_train=true --do_eval=true --init_checkpoint=G:/downloaddata/bert-chinese/chinese_L-12_H-768_A-12/bert_model.ckpt --max_seq_length=70 --train_batch_size=32
+ --learning_rate=5e-5 --num_train_epochs=3.0 --output_dir=sim_modelrain_epochs=3.0 --output_dir=sim_model --data_dir=G:/tf-start/Implementation-of-Text-Classification/07TrainModel/Multi_Classification_BERT/dataset/mul_data/
+
+
+Result:
+INFO:tensorflow:***** Eval results *****
+INFO:tensorflow:  eval_accuracy = 0.96666664
+INFO:tensorflow:  eval_loss = 0.12424033
+INFO:tensorflow:  global_step = 28
+INFO:tensorflow:  loss = 0.14365552
