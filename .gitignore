@@ -1,5 +1,7 @@
 /dataset/*
 /07TrainModel/Multi_Classification_BERT/sim_model
+/07TrainModel/Multi_Classification_BERT2/sim_model
+/07TrainModel/Multi_Classification_BERT2/data
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
