@@ -38,7 +38,7 @@ def get_attack_label(content, train_label):
     for i in range(len(train_label)):
         if train_label[i] > 0 and train_label[i] < 4:
             attack.append(content[i][0])
-            attack_label.append(train_label[i])
+            attack_label.append(train_label[i]-1)
     print(len(attack_label), attack_label)
     print(len(attack), attack)
     return attack, attack_label

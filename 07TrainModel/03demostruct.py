@@ -82,7 +82,7 @@ def build_model(train_data, train_label, word_index):
     # print('计算得到文本最大长度为-->',get_max_content_length(train_data))
     max_len = 200  # 计算得到文本最大长度为491
     max_words = 11525 + 1
-    epochs_num = 1000
+    epochs_num = 3000
     batch_size_num = 64
 
     train_data = keras.preprocessing.sequence.pad_sequences(train_data, padding='post', maxlen=max_len)

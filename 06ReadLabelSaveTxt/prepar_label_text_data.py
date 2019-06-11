@@ -16,7 +16,7 @@ def read_ann(annFilePath):
     # annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part2_ann_label')
     # # 旧的第一部分标注数据176
     # annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part1_ann_label')
-    print('待比较文档路径：', annFilePath)
+    print('标记数据文档路径：', annFilePath)
     datas = []
     for fname in os.listdir(annFilePath):
         if fname[-4:] == '.ann':
@@ -26,13 +26,12 @@ def read_ann(annFilePath):
                 for item in label_list:
                     p = re.compile(r'label\d{1,2}')  # 正则表达式提取label
                     label_str_list = item.split('\t')  # label_str:T11	label32 238 239	他
-                    # print('ss', label_str_list)
+                    if len(label_str_list) <= 1:
+                        print(fname, '该标注文件有错误，需要修改一下空行的问题')
                     label = p.findall(label_str_list[1])[0]
                     val = label_str_list[2].replace('\n', '')
-                    # print(label, val)
                     datas.append([label, val])
-
-    print(datas)
+    # print(datas)
     return datas
 
 
