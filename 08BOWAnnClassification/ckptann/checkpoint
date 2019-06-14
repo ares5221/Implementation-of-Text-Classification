@@ -1,0 +1,5 @@
+model_checkpoint_path: "mlp.ckpt-80"
+all_model_checkpoint_paths: "mlp.ckpt-77"
+all_model_checkpoint_paths: "mlp.ckpt-78"
+all_model_checkpoint_paths: "mlp.ckpt-79"
+all_model_checkpoint_paths: "mlp.ckpt-80"

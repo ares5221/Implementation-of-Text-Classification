@@ -99,6 +99,7 @@ def build_model(train_data, train_label, word_index):
     train_label = np.array(train_label)
     print(train_data.shape)
     print(train_label.shape)
+
     print('step5:导入 outer embeding')
     sgns_dir = r'G:\downloaddata\sgns.target.word-word.dynwin5.thr10.neg5.dim300.iter5'
     embeddings_index = {}
@@ -127,7 +128,7 @@ def build_model(train_data, train_label, word_index):
     model.add(keras.layers.Embedding(max_words, embedding_dim))
     model.add(keras.layers.LSTM(128, activation=tf.nn.tanh))
     # model.add(keras.layers.Dropout(0.2))
-    model.add(keras.layers.Dense(64, activation=tf.nn.relu))
+    model.add(keras.layers.Dense(16, activation=tf.nn.relu))
     model.add(keras.layers.Dense(95, activation=tf.nn.sigmoid))
     model.summary()
 
