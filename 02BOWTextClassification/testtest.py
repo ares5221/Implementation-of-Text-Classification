@@ -7,7 +7,8 @@
 #         print(line)
 #         # result.append(list(line.strip('\n').split(',')))
 import os
-print(os.system('javac'))
+print(round(34*0.8))
+
 
 # f = open("word_dic.txt", "r", encoding='utf-8')  # 设置文件对象
 # str = f.read()  # 将txt文件的所有内容读入到字符串str中

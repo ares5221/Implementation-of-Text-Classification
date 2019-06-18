@@ -271,8 +271,7 @@ def convert_label2value(label_list):
             if label == 'label81':
                 label_val[26].append('缺失教育引导')
 
-            # 育人对策
-            if label == 'label82':  # 根本原因
+            if label == 'label82':  # 育人对策
                 label_val[27].append('说服教育法' + '-' + val + '\n')
             if label == 'label83':
                 label_val[27].append('情感陶冶法' + '-' + val + '\n')

@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
 import os
-import numpy as np
-from matplotlib import pylab
 from ProcessData import process_data
-import jieba
 from bert_serving.client import BertClient
 import tensorflow as tf
 import numpy as np
@@ -16,6 +13,7 @@ import matplotlib.pyplot as plt
 
 def peredata(select):
     '''
+    keras实现，可以画图
     将句子通过BERT embedding转为vector，切分训练集和验证集
     :return:x_train, y_train, x_val, y_val即训练集和验证集的label和text
     '''
@@ -34,7 +32,7 @@ def peredata(select):
     # train_data = train_data[indices]
     # train_label = train_label[indices]
 
-    if not os.path.exists(select + "_train_data.npy"):  #save data
+    if not os.path.exists(select + "_train_data.npy"):  # save data
         np.save(select + "_train_data.npy", train_data)
     if not os.path.exists(select + "_train_label.npy"):
         np.save(select + "_train_label.npy", train_label)
@@ -46,7 +44,7 @@ def peredata(select):
 def GetTrainData(select):
     train_data = np.load(select + "_train_data.npy")
     train_label = np.load(select + "_train_label.npy")
-    print('直接导入分类数据成功')
+    print(select, '直接导入分类数据成功')
     print('Shape of data tensor:', train_data.shape)
     print('Shape of label tensor:', train_label.shape)
     indices = np.arange(train_data.shape[0])  # shuffle
@@ -60,10 +58,10 @@ def GetTrainData(select):
     return train_data, train_label, classes_num
 
 
-def train_model(train_data, train_label, classes_num):
+def train_model(train_data, train_label, classes_num, select):
     print('step3: start build MLP model...')
     max_len = 768  # BERT Embedding length
-    epochs_num = 4000
+    epochs_num = 2000
     batch_size_num = 64
     train_data = keras.preprocessing.sequence.pad_sequences(train_data,
                                                             padding='post',
@@ -90,8 +88,8 @@ def train_model(train_data, train_label, classes_num):
     # y_val = train_label[25:]
     # partial_y_train = train_label[0:25]
     partial_x_train, x_val, partial_y_train, y_val = train_test_split(train_data, train_label, test_size=0.3)
-    test_data = train_data[25:]
-    test_labels = train_label[25:]
+    test_data = train_data[:]
+    test_labels = train_label[:]
 
     history = model.fit(partial_x_train,
                         partial_y_train,
@@ -117,7 +115,8 @@ def train_model(train_data, train_label, classes_num):
     plt.plot(epochs, loss, 'bo', label='Training loss')
     # b is for "solid blue line"
     plt.plot(epochs, val_loss, 'b', label='Validation loss')
-    plt.title('Training and validation loss')
+    tt1 = select + ' :Training and validation loss'
+    plt.title(tt1)
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
@@ -125,7 +124,8 @@ def train_model(train_data, train_label, classes_num):
     plt.clf()  # clear figure
     plt.plot(epochs, acc, 'bo', label='Training acc')
     plt.plot(epochs, val_acc, 'r', label='Validation acc')
-    plt.title('Training and validation accuracy')
+    tt2 = select + ' :Training and validation accuracy'
+    plt.title(tt2)
     plt.xlabel('Epochs')
     plt.ylabel('Accuracy')
     plt.legend()
@@ -133,18 +133,22 @@ def train_model(train_data, train_label, classes_num):
     print('模型训练结束！！！！！')
 
 
-
 if __name__ == '__main__':
     print('采用BERT+MLP模型对标注文本做分类')
-    # option = ['all', 'attack', 'disorder', 'pinxingwenti']
-    option = ['pinxingwenti']
+    #'jiaoshilingdaofangshi' #只有一条数据忽略
+    # option = ['all', 'attack', 'disorder', 'pinxingwenti', 'buliangshihao', 'tuisuo',
+    # option = ['yiyuwenti', 'jiaolvwenti', 'ziwozhongxin', 'xuexiwenti', 'jiduanshijian',
+    #           'jiankangzhuangkuang', 'suoshuqunti', 'jiatingjiegou', 'jiaoyangfangshi',
+    option = ['jiatingqifen', 'chengyuanjiankangzhuangkuang', 'chengyuanjingjizhuangkuang', 'tongbanjiena', 'genbenyuanyin', 'yurenduice'
+              ]
+    # option = ['pinxingwenti']
     for i in range(0, len(option)):
         select = option[i]
         if not os.path.exists(select + "_train_data.npy"):
             train_data, train_label, classes_num = peredata(select)
         else:
             train_data, train_label, classes_num = GetTrainData(select)  # 获取训练数据
-        train_model(train_data, train_label, classes_num)
+        train_model(train_data, train_label, classes_num, select)
     # select = option[0]
     # train_data, train_label = GetTrainData(select)  # 获取训练数据
     # train_model(train_data, train_label)

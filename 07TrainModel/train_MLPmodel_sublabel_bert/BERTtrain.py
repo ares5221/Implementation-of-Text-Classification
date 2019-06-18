@@ -18,6 +18,7 @@ from sklearn.model_selection import train_test_split
 
 def peredata(select):
     '''
+    tf实现，不可以画图， 仅可以获得一个accuracy
     将句子通过BERT embedding转为vector，切分训练集和验证集
     :return:x_train, y_train, x_val, y_val即训练集和验证集的label和text
     '''
@@ -59,7 +60,7 @@ def GetTrainData(select):
     set_label = set(train_label)
     classes_num = len(set_label)
     if select =='all':
-        classes_num = 95
+        classes_num = 90
     elif select == 'attack':
         classes_num = 3
     elif select == 'disorder':

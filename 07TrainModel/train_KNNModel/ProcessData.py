@@ -20,13 +20,12 @@ def process_data(select):
     if select == 'all':
         anntxt = X.values.tolist()
         label = Y.tolist()
-        # train_x_list = anntxt
         label = [x - 1 for x in label]
         content, tag = [], []
         for i in range(len(label)):
-            if label[i] not in [31, 32, 33, 51, 52]:
+            if label[i] not in [30, 31, 32, 51, 52]:
                 content.append(anntxt[i])
-                if label[i] > 33 and label[i] < 51:
+                if label[i] > 32 and label[i] < 51:
                     tag.append(label[i] - 3)
                 elif label[i] > 52:
                     tag.append(label[i] - 3 - 2)
@@ -34,8 +33,7 @@ def process_data(select):
                     tag.append(label[i])
         train_x_list = content
         train_y_list = tag
-        print('获取all ann 数据规模：', len(train_y_list), train_y_list)
-        print(train_x_list)
+        print('获取all ann 数据规模：', len(train_y_list))
         classes_num = 90
 
     if select == 'attack':
@@ -358,6 +356,6 @@ def make_label(df):
 
 
 if __name__ == '__main__':
-    select = 'pinxingwenti'
+    select = 'all'
     anntxt, label, classes_num = process_data(select)
-    print(anntxt, label, classes_num)
+    print('获取数据完成', select)

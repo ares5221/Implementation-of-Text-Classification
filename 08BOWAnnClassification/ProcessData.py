@@ -22,9 +22,16 @@ def process_data(select):
         label = Y.tolist()
         train_x_list = anntxt
         train_y_list = [x - 1 for x in label]
-        print(train_y_list)
+        content, tag = [], []
+        for i in range(len(label)):
+            if label[i] not in [31, 32, 33]:
+                content.append(anntxt[i])
+                tag.append(label[i])
+        train_x_list = content
+        train_y_list = tag
+        print('获取all ann 数据规模：', len(train_y_list), train_y_list)
         print(train_x_list)
-        classes_num = 95
+        classes_num = 92
 
     if select == 'attack':
         anntxt = X.values.tolist()
