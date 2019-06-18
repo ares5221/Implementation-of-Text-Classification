@@ -24,9 +24,9 @@ def process_data(select):
         label = [x - 1 for x in label]
         content, tag = [], []
         for i in range(len(label)):
-            if label[i] not in [31, 32, 33, 51, 52]:
+            if label[i] not in [30, 31, 32, 51, 52]:
                 content.append(anntxt[i])
-                if label[i] > 33 and label[i] < 51:
+                if label[i] > 32 and label[i] < 51:
                     tag.append(label[i] - 3)
                 elif label[i] > 52:
                     tag.append(label[i] - 3 - 2)
