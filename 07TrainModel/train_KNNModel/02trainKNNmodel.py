@@ -9,6 +9,7 @@ from keras.utils import np_utils
 from sklearn.model_selection import train_test_split
 from tensorflow import keras
 import matplotlib.pyplot as plt
+
 '''
 获取标注数据
 将标注数据随机分成训练数据与测试数据8：2
@@ -51,12 +52,12 @@ def peredata(select):
             v1 = bc.encode(texts[i])
             train_data.append(v1[0])
         train_label = np.array(labels)
-        print('切分数据集：')
+
         train_vec = train_data[:cut_num]
         test_vec = train_data[cut_num:]
         train_lab = train_label[:cut_num]
         test_lab = train_label[cut_num:]
-
+        print('切分数据集成功')
         # indices = np.arange(len(train_data))  # shuffle
         # np.random.shuffle(indices)
         # train_data = train_data[indices]
@@ -85,11 +86,34 @@ def GetTrainData(select):
     # np.random.shuffle(indices)
     # train_data = train_data[indices]
     # train_label = train_label[indices]
-    return train_vec, test_vec, train_lab, test_lab
+    f = open('train.csv', 'r', encoding='utf-8')
+    csvreader = csv.reader(f)
+    train_list = list(csvreader)
+    f2 = open('test.csv', 'r', encoding='utf-8')
+    csvreader2 = csv.reader(f2)
+    test_list = list(csvreader2)
+    return train_vec, test_vec, train_lab, test_lab, train_list, test_list
 
 
-def train_knnmodel(train_vec, test_vec, train_lab, test_lab, select):
+def train_knnmodel(train_vec, test_vec, train_lab, test_lab, select, train_list, test_list):
     print('aa')
+    test_cal_lab = []  # 用于存储knn计算得到的label结果
+    topk = 5   # knn中可以调节设置参数K setting
+    for i in range(len(test_vec) - 460):
+        score = np.sum(test_vec[i] * train_vec, axis=1) / np.linalg.norm(train_vec, axis=1)
+        topk_idx = np.argsort(score)[::-1][:topk]
+        print('当前待比较分类label-->content:', test_list[i])
+        for idx in topk_idx:
+            # print('> %s\t%s' % (score[idx], idx), )
+            print('###找到的相似-->', train_list[idx])
+        # topk_idx 存储最相似的数据id，通过该id获取对应的label，
+        # 比较这些id得到其中数量最多的相同label作为测试数据的label
+        
+
+
+
+
+
 
 
 if __name__ == '__main__':
@@ -101,5 +125,5 @@ if __name__ == '__main__':
         if not os.path.exists(select + "_train_vec.npy"):
             train_vec, test_vec, train_lab, test_lab = peredata(select)
         else:
-            train_vec, test_vec, train_lab, test_lab = GetTrainData(select)  # 获取训练数据
-        train_knnmodel(train_vec, test_vec, train_lab, test_lab, select)
+            train_vec, test_vec, train_lab, test_lab, train_list, test_list = GetTrainData(select)  # 获取训练数据
+        train_knnmodel(train_vec, test_vec, train_lab, test_lab, select, train_list, test_list)
