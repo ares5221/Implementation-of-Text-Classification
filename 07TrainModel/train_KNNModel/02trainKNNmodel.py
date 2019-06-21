@@ -30,14 +30,14 @@ def peredata(select):
     print('step2: 划分训练集与测试集数据')
     cut_num = round(len(labels) * 0.8)
 
-    if not os.path.exists('train.csv'):
-        with open('train.csv', 'a', newline='', encoding='utf-8') as csvfile:
+    if not os.path.exists(select + '_train.csv'):
+        with open(select + '_train.csv', 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             for i in range(cut_num):
                 data = [labels[i], texts[i][0]]
                 writer.writerow(data)
-    if not os.path.exists('test.csv'):
-        with open('test.csv', 'a', newline='', encoding='utf-8') as csvfile:
+    if not os.path.exists(select + '_test.csv'):
+        with open(select + '_test.csv', 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             for i in range(cut_num, len(labels)):
                 data = [labels[i], texts[i][0]]
@@ -71,7 +71,7 @@ def peredata(select):
         if not os.path.exists(select + "_test_lab.npy"):
             np.save(select + "_test_lab.npy", test_lab)
         print('step2: 划分数据集后，BERT转换向量完成，')
-    return train_vec, test_vec, train_lab, test_lab
+    return train_vec, test_vec, train_lab, test_lab, texts[:cut_num], texts[cut_num:]
 
 
 def GetTrainData(select):
@@ -86,44 +86,58 @@ def GetTrainData(select):
     # np.random.shuffle(indices)
     # train_data = train_data[indices]
     # train_label = train_label[indices]
-    f = open('train.csv', 'r', encoding='utf-8')
+    f = open(select + '_train.csv', 'r', encoding='utf-8')
     csvreader = csv.reader(f)
     train_list = list(csvreader)
-    f2 = open('test.csv', 'r', encoding='utf-8')
+    f2 = open(select + '_test.csv', 'r', encoding='utf-8')
     csvreader2 = csv.reader(f2)
     test_list = list(csvreader2)
     return train_vec, test_vec, train_lab, test_lab, train_list, test_list
 
 
 def train_knnmodel(train_vec, test_vec, train_lab, test_lab, select, train_list, test_list):
-    print('aa')
     test_cal_lab = []  # 用于存储knn计算得到的label结果
-    topk = 5   # knn中可以调节设置参数K setting
-    for i in range(len(test_vec) - 460):
+    topk = 1   # knn中可以调节设置参数K setting
+    for i in range(len(test_vec)):
         score = np.sum(test_vec[i] * train_vec, axis=1) / np.linalg.norm(train_vec, axis=1)
         topk_idx = np.argsort(score)[::-1][:topk]
         print('当前待比较分类label-->content:', test_list[i])
         for idx in topk_idx:
             # print('> %s\t%s' % (score[idx], idx), )
             print('###找到的相似-->', train_list[idx])
+            with open('test&simsent.csv', 'a', newline='', encoding='utf-8') as csvfile:
+                writer = csv.writer(csvfile)
+                data = [test_list[i], train_list[idx]]
+                writer.writerow(data)
+
         # topk_idx 存储最相似的数据id，通过该id获取对应的label，
         # 比较这些id得到其中数量最多的相同label作为测试数据的label
-        
+        cal_lab = []
+        for idx in topk_idx:
+            cal_lab.append(train_lab[idx])
+        # print(cal_lab)
+        # print(max(cal_lab, key=cal_lab.count))
+        test_cal_lab.append(max(cal_lab, key=cal_lab.count))
+    print(test_cal_lab)
+    print(test_lab[:len(test_lab)])
 
-
-
-
-
+    #计算精度
+    right_num = 0
+    for i in range(len(test_cal_lab)):
+        if test_cal_lab[i] == test_lab[i]:
+            right_num +=1
+    acc = right_num/len(test_cal_lab)
+    print('精度acc：', acc)
 
 
 if __name__ == '__main__':
     print('采用BERT+KNN模型对标注文本做分类')
     # option = ['all', 'attack', 'disorder', 'pinxingwenti', 'buliangshihao', 'tuisuo','yiyuwenti', 'jiaolvwenti', 'ziwozhongxin', 'xuexiwenti', 'jiduanshijian', 'jiankangzhuangkuang', 'suoshuqunti', 'jiatingjiegou', 'jiaoyangfangshi', 'jiatingqifen', 'chengyuanjiankangzhuangkuang', 'chengyuanjingjizhuangkuang', 'tongbanjiena', 'genbenyuanyin', 'yurenduice']
-    option = ['all']
+    option = ['attack']
     for i in range(0, len(option)):
         select = option[i]
         if not os.path.exists(select + "_train_vec.npy"):
-            train_vec, test_vec, train_lab, test_lab = peredata(select)
+            train_vec, test_vec, train_lab, test_lab, train_list, test_list = peredata(select)
         else:
             train_vec, test_vec, train_lab, test_lab, train_list, test_list = GetTrainData(select)  # 获取训练数据
         train_knnmodel(train_vec, test_vec, train_lab, test_lab, select, train_list, test_list)
