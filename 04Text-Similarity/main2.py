@@ -43,7 +43,7 @@ def find_similarity(data_old, data_new):
                 max_sim = ss
                 max_idx = j
                 print('maybe相似的文档是：', i, '<----->', j, '<----->', ss)
-        if max_sim > 0.95:  # 若相似度大于0.95，则输出文件名
+        if max_sim > 0.90:  # 若相似度大于0.95，则输出文件名
             print('相似的文档是：', i, '<----->', max_idx, '<----->', max_sim)
             file_index.append(max_idx)
     with open('file_index.txt', 'a', encoding='utf-8') as f:
