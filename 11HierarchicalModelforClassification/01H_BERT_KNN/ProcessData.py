@@ -11,7 +11,7 @@ def process_data(select):
     '''
     ann_filename = r'label_text.csv'
     df = pd.read_csv(ann_filename, encoding='utf-8')  # pandas读取csv数据
-    print('step1: 读取标注文本及标签信息', select)  # 显示当前处理的二级标签类别
+    print('step1: 读取标注文本及标签信息', select)
     make_label(df)
     X = df[['Content']]
     Y = df.multilabel

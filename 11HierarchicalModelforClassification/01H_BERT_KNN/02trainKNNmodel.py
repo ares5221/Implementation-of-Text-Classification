@@ -107,7 +107,7 @@ def GetTrainData(select):
 
 def train_knnmodel(train_vec, test_vec, train_lab, test_lab, select, train_list, test_list):
     test_cal_lab = []  # 用于存储knn计算得到的label结果
-    topk = 7   # knn中可以调节设置参数K setting
+    topk = 3   # knn中可以调节设置参数K setting
 
     for i in range(len(test_vec)):
         score = np.sum(test_vec[i] * train_vec, axis=1) / np.linalg.norm(train_vec, axis=1)
