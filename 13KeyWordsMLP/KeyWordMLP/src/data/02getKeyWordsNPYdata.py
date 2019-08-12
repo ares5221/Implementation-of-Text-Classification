@@ -5,9 +5,8 @@ import csv, os
 from bert_serving.client import BertClient
 
 '''
-通过csv数据构建用于trainAttackWordsModel trainLearnWordsModel的MLP数据
-生成的数据保存在X_attack_words.npy  Y_attack_words.npy
-X_learn_words.npy  Y_learn_words.npy
+通过csv数据构建用于trainLearnSentencesModel的MLP数据
+生成的数据保存在X_learn_sentences.npy  Y_learn_sentences.npy
 '''
 
 
