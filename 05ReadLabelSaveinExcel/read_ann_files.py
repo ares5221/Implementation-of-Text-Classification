@@ -12,7 +12,7 @@ def read_ann():
     读取文件夹下ann文本的内容，读取其中title, 对应label
     :return: titles, labels
     '''
-    # 新的第二部分标注数据109
+    # 新的第三部分标注数据385
     annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part3_ann_label')
     # # 新的第二部分标注数据109
     # annFilePath = os.path.abspath('../dataset/AnnFileForLabel/part2_ann_label')
@@ -60,7 +60,7 @@ def convert_label2value(label_list):
         label_str = label_list[i]
         if True:
             # print(i, label_str)
-            p = re.compile(r'label\d{1,2}')  # 正则表达式提取label
+            p = re.compile(r'label\d{1,3}')  # 正则表达式提取label
             label_str_list = label_str.split('\t')  # label_str:T11	label32 238 239	他
             print('ss', label_str_list)
             # label = label_str_list[1].split()
@@ -358,8 +358,8 @@ def save_excel(titles, labels, ID):
 
 if __name__ == "__main__":
     titles, labels, ID = read_ann()
-    # id 从175开始，然后是title，然后是label
+    # id 从268开始，然后是title，然后是label
     print(titles)
     print(labels)
-    save_excel(titles, labels, ID)
+    # save_excel(titles, labels, ID)
     print('保存完毕 Finished！')

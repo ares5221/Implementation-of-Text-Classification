@@ -31,7 +31,7 @@ def read_ann(annFilePath):
                     label = p.findall(label_str_list[1])[0]
                     val = label_str_list[2].replace('\n', '')
                     datas.append([label, val])
-    # print(datas)
+    print(datas)
     return datas
 
 
@@ -50,6 +50,6 @@ if __name__ == "__main__":
     datas1 = read_ann(part1_Path)
     datas2 = read_ann(part2_Path)
     count = len(datas1) + len(datas2)
-    save_csv(datas1)
-    save_csv(datas2)
+    # save_csv(datas1)
+    # save_csv(datas2)
     print('保存csv完毕 Finished！得到数据条数--->', count)
