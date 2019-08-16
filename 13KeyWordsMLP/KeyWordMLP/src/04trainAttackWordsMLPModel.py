@@ -11,14 +11,14 @@ X_train_all_attack_words_5850  Y_train_all_attack_words_5850,
 bert embedding后的结果
 '''
 
-X = np.load(os.path.abspath('.') + '/data/X_train_all_attack_words_5850.npy')
-Y = np.load(os.path.abspath('.') + '/data/Y_train_all_attack_words_5850.npy')
+X = np.load(os.path.abspath('.') + '/data/X_train_all_attack_words_10298.npy')
+Y = np.load(os.path.abspath('.') + '/data/Y_train_all_attack_words_10298.npy')
 Y_label = np.array([Y, -(Y - 1)]).T
 print('导入问题-问题训练数据成功', X.shape, Y_label.shape)
 
 print(X.shape, Y_label.shape)
-X_train, X_test = X[0:5500], X[5500:]
-Y_train, Y_test = Y_label[0:5500], Y_label[5500:]
+X_train, X_test = X[0:8000], X[8000:]
+Y_train, Y_test = Y_label[0:8000], Y_label[8000:]
 print(X[0], Y[0])
 print(X_train, Y_train)
 print(X_test.shape, Y_test.shape)

@@ -67,7 +67,7 @@ def calSimilarityByLearningModel(train_data, test_vec, topK=5):
 
 def train_knnmodel(train_data, train_label, sentence):
     '''调用训练好的攻击行为 关键词的mlp模型,找到其中所属最多的label'''
-    topK = 5  # K setting
+    topK = 3  # K setting
     bc = BertClient()
     test_vec = bc.encode([sentence])
     tf.reset_default_graph()
@@ -83,11 +83,11 @@ def train_knnmodel(train_data, train_label, sentence):
 
 
 def KNN_learning(sentence):
-    if os.path.exists(DIR + "learn_words_101.npy"):
-        train_data = np.load(DIR + "learn_words_101.npy")
-        train_label = np.load(DIR + "label_learn_words_101.npy")
+    if os.path.exists(DIR + "learn_words_126.npy") and os.path.exists(DIR + "label_learn_words_126.npy"):
+        train_data = np.load(DIR + "learn_words_126.npy")
+        train_label = np.load(DIR + "label_learn_words_126.npy")
     else:
-        pass # 这里会调用生成attack_words_77.npy的方法
+        pass # 这里会调用生成label_learn_words_126.npy的方法
     res = train_knnmodel(train_data, train_label, sentence)
     if res == 0:
         return ['xue_xi_wen_ti','学习能力问题']
@@ -97,6 +97,8 @@ def KNN_learning(sentence):
         return ['xue_xi_wen_ti','学习态度问题']
     if res == 3:
         return ['xue_xi_wen_ti','注意力问题']
+    if res == 4:
+        return []
 
 
 
@@ -107,7 +109,7 @@ def test(sentence):
 
 # sample to use
 if __name__ == '__main__':
-    for sentence in ['孩子学习不好', '孩子学习没有计划', '孩子不写作业', '孩子注意力不集中']:
+    for sentence in ['攻击', '孩子学习没有计划', '孩子不写作业', '孩子注意力不集中']:
         test(sentence)
     while(True):
         s = input('Input:')

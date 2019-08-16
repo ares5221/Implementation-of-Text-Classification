@@ -30,8 +30,10 @@ def getLabelTestNPYData(data,name):
     if len(data) == 4 and name == 'learn_labels':
         print(len(data[0]), len(data[1]), len(data[2]), len(data[3]))
         label_learn = [0 for i in range(len(data[0]))] +[1 for i in range(len(data[1]))] +[2 for i in range(len(data[2]))] + [3 for i in range(len(data[3]))]
-        np.save(name + '_' + '.npy', label_learn)
-
+        num = len(data[0]) + len(data[1]) + len(data[2])+ len(data[3])
+        np.save(name + '_' + str(num) + '.npy', label_learn)
+        print(label_learn)
+        print('%s 的标签通过存储为向量npy格式' %name)
 
 # Start Position--->>>>>>>>>
 if __name__ == '__main__':
@@ -60,7 +62,9 @@ if __name__ == '__main__':
     print(len(learning_method), learning_method)
     print(len(learning_attitude), learning_attitude)
     print(len(learning_attention), learning_attention)
-    all_learn_sentences = learning_ability + learning_method + learning_attitude + learning_attention
 
-    getTestNPYData(all_learn_sentences, 'learn_sentences')
-    getLabelTestNPYData([learning_ability, learning_method, learning_attitude, learning_attention], 'learn_labels')
+    forKNNcompile_learn_sentences = learning_ability[:-1] + learning_method[:-5] + learning_attitude[:-37] + learning_attention[:-7]
+    forKNNcompile_learn_label = [learning_ability[:-1], learning_method[:-5], learning_attitude[:-37], learning_attention[:-7]]
+
+    getTestNPYData(forKNNcompile_learn_sentences, 'learn_sentences')
+    getLabelTestNPYData(forKNNcompile_learn_label, 'learn_labels')

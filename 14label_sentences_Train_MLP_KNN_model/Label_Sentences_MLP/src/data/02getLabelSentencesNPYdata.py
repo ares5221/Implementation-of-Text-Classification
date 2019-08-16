@@ -5,7 +5,7 @@ import csv, os
 from bert_serving.client import BertClient
 
 '''
-通过csv数据构建用于trainLearnSentencesModel的MLP数据
+通过trainMLP_learn_sentences.csv数据构建用于trainLearnSentencesModel的MLP数据
 生成的数据保存在X_learn_sentences.npy  Y_learn_sentences.npy
 拆分为训练集及测试集
 '''
@@ -25,8 +25,9 @@ def get_label_sentences_data(filename):
 
 
 def getData(filename):
-    if filename == 'all_learn_sentences.csv':
-        datasize = 190482
+    if filename == 'trainMLP_learn_sentences.csv':
+        datasize = 149342
+        split_num =120000
     # else:
     #     datasize = 10098
     X = [[] for i in range(datasize)]
@@ -55,15 +56,15 @@ def getData(filename):
     Y_train = Y_train[indices]
 
     # train & test
-    train_sentences_data = X_train[0:150000]
-    train_label_data = Y_train[0:150000]
-    test_sentences_data = X_train[150000:]
-    test_label_data = Y_train[150000:]
+    train_sentences_data = X_train[0:split_num]
+    train_label_data = Y_train[0:split_num]
+    test_sentences_data = X_train[split_num:]
+    test_label_data = Y_train[split_num:]
 
     XtrainName = 'X_train_' + 'learn_sentences_' + str(datasize) + '.npy'
-    YtrainName = 'Y_train_' + '_learn_sentences' + str(datasize) + '.npy'
-    XtestName = 'X_test_' + '_learn_sentences' + str(datasize) + '.npy'
-    YtestName = 'Y_test_' + '_learn_sentences' + str(datasize) + '.npy'
+    YtrainName = 'Y_train_' + 'learn_sentences' + str(datasize) + '.npy'
+    XtestName = 'X_test_' + 'learn_sentences' + str(datasize) + '.npy'
+    YtestName = 'Y_test_' + 'learn_sentences' + str(datasize) + '.npy'
     np.save(XtrainName, train_sentences_data)
     np.save(YtrainName, train_label_data)
     np.save(XtestName, test_sentences_data)
@@ -73,5 +74,5 @@ def getData(filename):
 
 # Start Position--->>>>>>>>>
 if __name__ == '__main__':
-    csv_file_learn = 'all_learn_sentences.csv'  # 190482
+    csv_file_learn = 'trainMLP_learn_sentences.csv'  # 190482
     getData(csv_file_learn)
