@@ -25,9 +25,9 @@ def get_atecQuestAns(filename):
 
 def getData(filename):
     if filename == 'all_attack_words.csv':
-        datasize = 10298
+        datasize = 12880
     else:
-        datasize = 15748
+        datasize = 20864
     X = [[] for i in range(datasize)]
     Y = [[] for i in range(datasize)]
     data = get_atecQuestAns(filename)

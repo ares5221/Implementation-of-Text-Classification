@@ -12,11 +12,11 @@ bert embedding后的结果
 '''
 
 X_train = np.load(os.path.abspath('.') + '/data/X_train_learn_sentences_387.npy')
-X_test = np.load(os.path.abspath('.') + '/data/X_test_learn_sentences_50.npy')
-# Y_train = X_train #train and test is same
 Y_train = np.load(os.path.abspath('.') + '/data/Y_train_learn_sentences_387.npy')
+print('导入学习问题标注语句-分类标签 训练数据成功', X_train.shape, Y_train.shape)
+X_test = np.load(os.path.abspath('.') + '/data/X_test_learn_sentences_50.npy')
 Y_test = np.load(os.path.abspath('.') + '/data/Y_test_learn_sentences_50.npy')
-
+print('导入学习问题标注语句-分类标签 测试数据成功', X_test.shape, Y_test.shape)
 # 标签数据转one_hot向量
 classes = max(Y_train) + 1 ##类别数为最大数加1
 one_hot_label = np.zeros(shape=(Y_train.shape[0],classes))##生成全0矩阵
@@ -26,13 +26,6 @@ Y_train = one_hot_label
 one_hot_label = np.zeros(shape=(Y_test.shape[0],classes))##生成全0矩阵
 one_hot_label[np.arange(0,Y_test.shape[0]),Y_test] = 1##相应标签位置置1
 Y_test = one_hot_label
-print('导入标签-学习问题句子 训练数据成功', X_train.shape, Y_test.shape)
-
-# X_train, X_test = X[0:9000], X[9000:]
-# Y_train, Y_test = Y_label[0:9000], Y_label[9000:]
-# print(X[0], Y[0])
-print(X_train, Y_train)
-print(X_test.shape, Y_test.shape)
 
 # Parameters
 learning_rate = 0.001

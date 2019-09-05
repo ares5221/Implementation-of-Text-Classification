@@ -67,14 +67,14 @@ def calSimilarityByLearningModel(train_data, test_vec, topK=5):
 
 def train_knnmodel(train_data, train_label, sentence):
     '''调用训练好的攻击行为 关键词的mlp模型,找到其中所属最多的label'''
-    topK = 3  # K setting
+    topK = 10  # K setting
     bc = BertClient()
     test_vec = bc.encode([sentence])
     tf.reset_default_graph()
     idlist, simlist =calSimilarityByLearningModel(train_data, test_vec, topK)
     # 根据找到的最相似关键词的索引 获取其对应的label信息,判断其具体属于那个二级类别如身体攻击还是言语攻击
     print('通过MLP计算 输入语句( %s )与所有关键词的相似度前%d个:'%(sentence,topK), simlist)
-    # print('最相似词的对应索引index:', idlist)
+    print('最相似词的对应索引index:', idlist)
     cal_lab = []
     for idx in idlist:
         cal_lab.append(train_label[idx])
@@ -83,9 +83,9 @@ def train_knnmodel(train_data, train_label, sentence):
 
 
 def KNN_learning(sentence):
-    if os.path.exists(DIR + "learn_words_126.npy") and os.path.exists(DIR + "label_learn_words_126.npy"):
-        train_data = np.load(DIR + "learn_words_126.npy")
-        train_label = np.load(DIR + "label_learn_words_126.npy")
+    if os.path.exists(DIR + "learn_words_145.npy") and os.path.exists(DIR + "label_learn_words_145.npy"):
+        train_data = np.load(DIR + "learn_words_145.npy")
+        train_label = np.load(DIR + "label_learn_words_145.npy")
     else:
         pass # 这里会调用生成label_learn_words_126.npy的方法
     res = train_knnmodel(train_data, train_label, sentence)

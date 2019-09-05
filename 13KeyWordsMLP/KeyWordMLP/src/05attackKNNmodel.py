@@ -84,9 +84,9 @@ def train_knnmodel(train_data, train_label, sentence):
 
 
 def KNN_attack(sentence):
-    if os.path.exists(DIR + "attack_words_102.npy") and os.path.exists(DIR + "label_attack_words_102.npy"):
-        train_data = np.load(DIR + "attack_words_102.npy")
-        train_label = np.load(DIR + "label_attack_words_102.npy")
+    if os.path.exists(DIR + "attack_words_114.npy") and os.path.exists(DIR + "label_attack_words_114.npy"):
+        train_data = np.load(DIR + "attack_words_114.npy")
+        train_label = np.load(DIR + "label_attack_words_114.npy")
     else:
         pass # 这里会调用生成attack_words_77.npy的方法
     res = train_knnmodel(train_data, train_label, sentence)
