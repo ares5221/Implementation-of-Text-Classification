@@ -80,7 +80,7 @@ def read_ann(annFilePath):
 
 def save_csv(datas):
     for data in datas:
-        with open('label_text_pro.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open('label_text_pro1.csv', 'a', newline='', encoding='utf-8') as csvfile:
             # 获得 writer对象 delimiter是分隔符 默认为 ","
             writer = csv.writer(csvfile)
             # 调用 writer的 writerow方法将 test_writer_data写入 test_writer.csv文件
