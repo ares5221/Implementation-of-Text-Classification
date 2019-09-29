@@ -12,35 +12,28 @@ import pandas as pd
 import pickle
 from collections import defaultdict
 import re
-
 from bs4 import BeautifulSoup
-
 import sys
 import os
 from nltk import tokenize
-
 from keras.preprocessing.text import Tokenizer, text_to_word_sequence
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils.np_utils import to_categorical
-
 from keras.layers import Embedding, RepeatVector, Permute, Multiply, Lambda, BatchNormalization, LeakyReLU
 from keras.layers import Dense, Input, Flatten
 from keras.layers import Conv1D, MaxPooling1D, Embedding, merge, Dropout, LSTM, CuDNNLSTM, GRU, Bidirectional, TimeDistributed
 from keras.models import Model
 from keras.callbacks import EarlyStopping, LearningRateScheduler, Callback, ModelCheckpoint
-
 from keras.optimizers import Adam, Adadelta, SGD
-
-
 from keras import backend as K
 from keras.engine.topology import Layer, InputSpec
 from keras import initializers
 
-# from tqdm import tqdm
+from tqdm import tqdm
 import math
 from matplotlib import pyplot as plt
 import seaborn as sn
-# from colored import fg, bg, attr
+from colored import fg, bg, attr
 
 class AttentionLayer(Layer):
     """
