@@ -5,47 +5,45 @@ import csv
 import os
 import re
 
+
 def read_ann1(annFilePath):
-    #修改part1 中txt文件名从0001.txt改为a0000001.txt
+    # 修改part1 中txt文件名从0001.txt改为a0000001.txt
     for fname in os.listdir(annFilePath):
         if fname[-4:] == '.txt':
             if True:
-                oldname = os.path.join(annFilePath,fname)
-                newname = annFilePath + '/new/' + 'a000'+fname
+                oldname = os.path.join(annFilePath, fname)
+                newname = annFilePath + '/new/' + 'a000' + fname
                 print(oldname)
                 print(newname)
                 os.rename(oldname, newname)
 
 
 def read_ann2(annFilePath):
-    start_index,count = 175, 1
+    start_index, count = 175, 1
     # 修改part2 中txt文件名从0001.txt改为a0000176.txt
     for fname in os.listdir(annFilePath):
         if fname[-4:] == '.txt':
-            index = fname[:-4]
-            print(index, int(index))
             if True:
-                oldname = os.path.join(annFilePath,fname)
-                newname = annFilePath + '/new/' + 'a0000'+str(start_index + count)+'.txt'
+                oldname = os.path.join(annFilePath, fname)
+                newname = annFilePath + '/new/' + 'a0000' + str(start_index + count) + '.txt'
                 print(oldname)
                 print(newname)
                 os.rename(oldname, newname)
-                count +=1
+                count += 1
+
 
 def read_ann3(annFilePath):
-    start_index,count = 267, 1
-    # 修改part2 中txt文件名从0001.txt改为a0000176.txt
+    start_index, count = 267, 1
+    # 修改part2 中txt文件名从0001.txt改为a0000268.txt
     for fname in os.listdir(annFilePath):
         if fname[-4:] == '.txt':
-            index = fname[:-4]
-            print(index, int(index))
             if True:
-                oldname = os.path.join(annFilePath,fname)
-                newname = annFilePath + '/new/' + 'a0000'+str(start_index + count)+'.txt'
-                print(oldname)
-                print(newname)
+                oldname = os.path.join(annFilePath, fname)
+                newname = annFilePath + '/new/' + 'a0000' + str(start_index + count) + '.txt'
+                # print(oldname)
+                # print(newname)
                 os.rename(oldname, newname)
-                count +=1
+                count += 1
 
 
 if __name__ == "__main__":
