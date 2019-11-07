@@ -25,7 +25,7 @@ print(X_test.shape, Y_test.shape)
 
 # Parameters
 learning_rate = 0.001
-training_epochs = 300
+training_epochs = 1300
 batch_size = 100
 display_step = 10
 

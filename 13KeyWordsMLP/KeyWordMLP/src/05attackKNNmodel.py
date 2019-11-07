@@ -133,7 +133,7 @@ if __name__ == '__main__':
     s3 = a3.split(',')
     s4 = a4.split(',')
 
-    for sentence in s3:
+    for sentence in s2:
         test(sentence)
     while(True):
         s = input('Input:')
